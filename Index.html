@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dolar Play</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f3f3f3;
+    }
+
+    .header {
+      background-color: #4CAF50;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 36px;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    h1 {
+      color: #333;
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    p {
+      margin-bottom: 20px;
+      color: #666;
+    }
+
+    .price {
+      font-size: 32px;
+      font-weight: bold;
+      color: #4CAF50;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      border-radius: 3px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .news {
+      margin-top: 40px;
+    }
+
+    .news-container {
+      margin-top: 20px;
+    }
+
+    .news h2 {
+      color: #333;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .news p {
+      color: #666;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    Dolar Play
+  </div>
+  <div class="container">
+    <p>Último precio del dólar blue en Argentina:</p>
+    <div class="price" id="dollarPrice">$--.-- ARS</div>
+    <button onclick="fetchDollarPrice()">Actualizar Precio</button>
+  </div>
+
+  <div class="news">
+    <div class="container">
+      <div class="news-container">
+        <h2>Noticias de Economía</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec odio ante. Fusce condimentum dapibus justo, id pretium metus lacinia nec.</p>
+        <p>Sed ultricies, urna nec consectetur feugiat, tellus massa accumsan elit, id tristique tortor purus id elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Morbi a eros nec dolor finibus faucibus.</p>
+      </div>
+
+      <div class="news-container">
+        <h2>Noticias de Política</h2>
+        <p>Nullam nec lorem et neque semper scelerisque. Vivamus fermentum scelerisque arcu, in tristique mauris consequat sed. Nam ullamcorper eros vel tellus tincidunt, nec interdum risus luctus.</p>
+        <p>Suspendisse nec orci in orci tempor lobortis. Morbi id metus tristique, tempor leo vel, vulputate libero. Integer ac nunc eu magna gravida efficitur.</p>
+      </div>
+
+      <div class="news-container">
+        <h2>Noticias de Tecnología</h2>
+        <p>Quisque ac ex sit amet tortor mollis ullamcorper. Integer ultricies sem eu ex tincidunt, at volutpat lorem malesuada. Fusce at mauris quam.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec odio ante. Fusce condimentum dapibus justo, id pretium metus lacinia nec.</p>
+      </div>
+
+      <div class="news-container">
+        <h2>Noticias de Deportes</h2>
+        <p>Sed ultricies, urna nec consectetur feugiat, tellus massa accumsan elit, id tristique tortor purus id elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Morbi a eros nec dolor finibus faucibus.</p>
+        <p>Nullam nec lorem et neque semper scelerisque. Vivamus fermentum scelerisque arcu, in tristique mauris consequat sed. Nam ullamcorper eros vel tellus tincidunt, nec interdum risus luctus.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function fetchDollarPrice() {
+      fetch('https://www.dolarhoy.com/api/dolarblue')
+        .then(response => response.json())
+        .then(data => {
+          const dollarPrice = data.compra;
+          document.getElementById('dollarPrice').textContent = `$${dollarPrice} ARS`;
+        })
+        .catch(error => {
+          console.error('Error al obtener el precio del dólar blue:', error);
+          alert('Error al obtener el precio del dólar blue. Inténtalo de nuevo más tarde.');
+        });
+    }
+
+    // Cargar el precio del dólar blue al cargar la página
+    window.addEventListener('load', fetchDollarPrice);
+  </script>
+</body>
+</html>
